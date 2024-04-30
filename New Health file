@@ -22,5 +22,10 @@ pipeline {
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/New health project/target', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }
-    }
+    stage('Create a Docker image from the Package medicure-0.0.1-SNAPSHOT.jar file') {
+            steps {
+                sh 'docker build -t anamikakumari998/medicure-0.0.1-SNAPSHOT.jar:1.0 .'
+            }
+       }
+  }
 }
