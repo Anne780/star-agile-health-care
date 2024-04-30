@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven' // Assuming 'Maven' is the name of your Maven installation in Jenkins
+        maven 'M2_HOME'
     }
     stages {
         stage('Git checkout') {
