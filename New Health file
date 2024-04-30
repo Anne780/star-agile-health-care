@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'M2_HOME'
+        maven 'Maven' // Assuming 'Maven' is the name of your Maven installation in Jenkins
     }
     stages {
         stage('Git checkout') {
@@ -10,9 +10,7 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Anne780/star-agile-health-care.git'
             }
         }
-    }
-}
-stage('Create a package') {
+        stage('Create a package') {
             steps {
                 echo 'This will create a package using Maven'
                 sh 'mvn package'
@@ -20,6 +18,9 @@ stage('Create a package') {
         }
         stage('Publish the HTML Reports') {
             steps {
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                echo 'Publishing HTML Reports...'
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+            }
         }
     }
+}
