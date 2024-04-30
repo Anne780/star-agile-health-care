@@ -10,3 +10,5 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Anne780/star-agile-insurance-project.git'
             }
         }
+    }
+}
